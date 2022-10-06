@@ -1,0 +1,5 @@
+streamlit
+docxtpl
+pandas
+python-slugify==6.1.1
+openpyxl
