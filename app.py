@@ -79,17 +79,13 @@ if start_reunion:
         status_text.info("Lancement de la réunion de " + str(nb_personnes) + " personnes à " + str(start_time.strftime("%H:%M:%S")) + " jusqu'à " + str(end_time.strftime("%H:%M:%S")) + " pour une durée prévue de " + str(diffForHumansStart2End) + ". Le coût pour le contribuable est estimé à " + str(round(total_price, 2)) + " €.")
 
     
-        time.sleep(1)
+        time.sleep(0.5)
 
-        # if stop_reunion:
-        #     break
-    
 
         metric_1.metric(label="🕰 A démarré", value=diffForHumans)
-        metric_2.metric(label="⏳ Complétion", value="{} %".format(str(round(percent, 0))))
-        metric_3.metric(label="💰 Coûts", value="{} €".format(round(price, 0)))
+        metric_2.metric(label="⏳ Complétion", value="{} %".format(str(round(percent, 1))))
+        metric_3.metric(label="💰 Coûts", value="{} €".format(round(price, 2)))
 
-        time.sleep(1)
         
     # stop du timer
     if stop_reunion:
