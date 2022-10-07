@@ -9,6 +9,7 @@ st.set_page_config(layout="centered", page_icon="💸", page_title="Coûts d'une
 left, right = st.columns([4, 1])
 left.title("💸 Coûts d'une réunion")
 
+hourly_rate = 41.2
 
 left.markdown("""
     Cette application permet d'estimer le coût réel d'une réunion pour le contribuable.
@@ -50,14 +51,14 @@ if start_reunion:
 
     # convert duree to seconds
     duree_in_secs = duree.hour * 3600 + duree.minute * 60
-    total_price = 40 * nb_personnes * (duree_in_secs / 60 / 60)     
+    total_price = hourly_rate * nb_personnes * (duree_in_secs / 60 / 60)     
 
     my_bar = st.progress(0)
 
     # start the counter
     for counter in range(0, duree_in_secs):
 
-        price = 40 * nb_personnes * (counter / 60 / 60)     
+        price = hourly_rate * nb_personnes * (counter / 60 / 60)     
         percent = (counter + 1) / duree_in_secs * 100
         diffForHumans = humanize.naturaltime(dt.datetime.now() - start_time)
         
