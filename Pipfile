@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+streamlit = "*"
+datetime = "*"
+python-slugify = "==6.1.1"
+humanize = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
