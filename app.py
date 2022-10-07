@@ -2,7 +2,10 @@ import streamlit as st
 import time
 import datetime as dt
 import humanize
+import os
+
 humanize.i18n.activate("fr_FR")
+os.environ['TZ'] = 'Europe/Brussels'
 
 st.set_page_config(layout="centered", page_icon="💸", page_title="Coûts d'une réunion")
 
