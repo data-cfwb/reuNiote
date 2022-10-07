@@ -2,10 +2,13 @@ import streamlit as st
 import time
 import datetime as dt
 import humanize
-import os
+import pytz
 
 humanize.i18n.activate("fr_FR")
-os.environ['TZ'] = 'Europe/Brussels'
+
+# define the timezone
+tz = pytz.timezone("Europe/Brussels")
+
 
 st.set_page_config(layout="centered", page_icon="💸", page_title="Coûts d'une réunion")
 
@@ -49,7 +52,7 @@ if start_reunion:
     metric_2 = col2.empty()
     metric_3 = col3.empty()
 
-    start_time = dt.datetime.now()
+    start_time = dt.datetime.now(tz)
     end_time = start_time + dt.timedelta(hours=duree.hour, minutes=duree.minute)
 
     # convert duree to seconds
@@ -63,7 +66,7 @@ if start_reunion:
 
         price = hourly_rate * nb_personnes * (counter / 60 / 60)     
         percent = (counter + 1) / duree_in_secs * 100
-        diffForHumans = humanize.naturaltime(dt.datetime.now() - start_time)
+        diffForHumans = humanize.naturaltime(dt.datetime.now(tz) - start_time)
         
         diffForHumansStart2End = humanize.precisedelta(end_time - start_time)
 
