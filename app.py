@@ -76,7 +76,7 @@ if start_reunion:
         # status_text.markdown("""
         # # La réunion a débuté.
         # """)
-        status_text.info("Lancement de la réunion de " + str(nb_personnes) + " personnes à " + str(start_time.strftime("%H:%M:%S")) + " jusqu'à " + str(end_time.strftime("%H:%M:%S")) + " pour une durée prévue de " + str(diffForHumansStart2End) + ". Le coût pour le contribuable est estimé à " + str(round(total_price, 2)) + " €.")
+        status_text.info("Lancement de la réunion de " + str(nb_personnes) + " personnes à " + str(start_time.strftime("%H:%M:%S")) + " jusqu'à " + str(end_time.strftime("%H:%M:%S")) + " pour une durée prévue de " + str(diffForHumansStart2End) + ". Le coût pour le contribuable est estimé à " + str(round(total_price, 2)) + " € pour cette réunion (hors frais d'infrastructure et frais généraux).")
 
     
         time.sleep(0.5)
