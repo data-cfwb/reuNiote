@@ -29,8 +29,8 @@ placeholder_conclusion = st.empty()
 
 with placeholder.form("template_form"):
     col1, col2 = st.columns([3, 2])
-    nb_personnes = col1.slider("Nombre de personnes présentes à la réunion", min_value=2, max_value=40, value=2, step=1)
-    duree = col2.time_input('Durée estimée de la réunion', dt.time(1, 00), help="Durée estimée de la réunion")
+    nb_personnes = col1.slider("Nombre de personnes présentes à la réunion", min_value=2, max_value=40, value=4, step=1)
+    duree = col2.time_input('Durée estimée de la réunion', dt.time(1, 30), help="Durée estimée de la réunion")
 
     start_reunion = st.form_submit_button("Lancer la réunion")
     placeholder_conclusion = st.empty()
@@ -46,12 +46,17 @@ if start_reunion:
 
     status_text = st.empty()
 
-    col1, col2, col3 = st.columns([3, 2, 2])
+    cola1, cola2 = st.columns([5, 2])
 
-    metric_1 = col1.empty()
-    metric_2 = col2.empty()
-    metric_3 = col3.empty()
+    metric_a1 = cola1.empty()
+    metric_a2 = cola2.empty()
 
+    colb1, colb2, colb3 = st.columns([3, 2, 2])
+
+    metric_b1 = colb1.empty()
+    metric_b2 = colb2.empty()
+    metric_b3 = colb3.empty()
+    
     start_time = dt.datetime.now(tz)
     end_time = start_time + dt.timedelta(hours=duree.hour, minutes=duree.minute)
 
@@ -76,15 +81,15 @@ if start_reunion:
         # status_text.markdown("""
         # # La réunion a débuté.
         # """)
-        status_text.info("Lancement de la réunion de " + str(nb_personnes) + " personnes à " + str(start_time.strftime("%H:%M:%S")) + " jusqu'à " + str(end_time.strftime("%H:%M:%S")) + " pour une durée prévue de " + str(diffForHumansStart2End) + ". Le coût pour le contribuable est estimé à " + str(round(total_price, 2)) + " € pour cette réunion (hors frais d'infrastructure et frais généraux).")
-
+        status_text.info("Lancement de la réunion de " + str(nb_personnes) + " personnes à " + str(start_time.strftime("%H:%M:%S")) + " jusqu'à " + str(end_time.strftime("%H:%M:%S")) + " pour une durée prévue de " + str(diffForHumansStart2End) + ".")
     
-        time.sleep(0.5)
+        time.sleep(1)
+        metric_a1.metric(label="🕰 Durée prévue", value=diffForHumansStart2End)
+        metric_a2.metric(label="💰 Coût estimé", value="{} €".format(round(total_price, 2)), help="(hors frais d'infrastructure et frais généraux)")
 
-
-        metric_1.metric(label="🕰 A démarré", value=diffForHumans)
-        metric_2.metric(label="⏳ Complétion", value="{} %".format(str(round(percent, 1))))
-        metric_3.metric(label="💰 Coûts", value="{} €".format(round(price, 2)))
+        metric_b1.metric(label="🕰 A démarré", value=diffForHumans)
+        metric_b2.metric(label="⏳ Complétion", value="{} %".format(str(round(percent, 1))))
+        metric_b3.metric(label="💰 Coûts", value="{} €".format(round(price, 2)), delta="{} €".format(round(price - total_price, 2)), delta_color="inverse")
 
         
     # stop du timer
