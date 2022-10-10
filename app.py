@@ -15,6 +15,10 @@ st.set_page_config(layout="centered", page_icon="💸", page_title="Coûts d'une
 left, right = st.columns([4, 1])
 left.title("💸 Coûts d'une réunion")
 
+# stats of 2022-09-01
+median_hourly_wage = 29.582
+average_hourly_wage = 31.760
+
 hourly_rate = 41.2
 
 left.markdown("""
